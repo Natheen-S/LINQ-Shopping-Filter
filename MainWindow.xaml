@@ -1,0 +1,121 @@
+﻿<Window x:Class="LINQ_Shopping_Filter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LINQ_Shopping_Filter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1500" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\nathe\Downloads\sky cloud.jpg"/>
+    </Window.Background>
+
+    <Grid >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Opacity="0.7" Height="600" Width="1250">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderThickness="2" BorderBrush="Black">
+            <StackPanel >
+                <StackPanel.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Margin" Value="10,0,0,0"/>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontWeight" Value="Light"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Label Content="Filters" HorizontalAlignment="Center"/>
+                <StackPanel Margin="10,0,0,0">
+                    <Label Content="Kumar Prime"/>
+                        <CheckBox Checked="CheckBox_Checked" x:Name="chk_prime" Unchecked="CheckBox_Checked">
+                        <Image Source="C:\Users\nathe\OneDrive\Desktop\VS\prime.png" Height="16"></Image>
+                    </CheckBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Sort"/>
+                    <RadioButton x:Name="rdb_low" Content="Low to High" Checked="RadioButton_Checked_low"/>
+                    <RadioButton x:Name="rdb_high" Content="High to Low" Checked="RadioButton_Checked_high"/>
+                    <RadioButton x:Name="rdb_pop" Content="Popularity" Checked="RadioButton_Checked_pop"/>
+                    <RadioButton x:Name="rdb_ratings" Content="Best Ratings" Checked="RadioButton_Checked_rat"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Brand"/>
+                    <RadioButton Content="Apple" x:Name="rdb_apple" Checked="rdb_apple_Checked"/>
+                        <RadioButton Content="Oneplus" x:Name="rdb_oneplus" Checked="rdb_apple_Checked"/>
+                        <RadioButton Content="Samsung" x:Name="rdb_samsung" Checked="rdb_apple_Checked"/>
+                        <RadioButton Content="Oppo" x:Name="rdb_oppo" Checked="rdb_apple_Checked"/>
+                        <RadioButton Content="Vivo" x:Name="rdb_vivo" Checked="rdb_apple_Checked"/>
+                        <RadioButton Content="All..." x:Name="rdb_all" Checked="rdb_apple_Checked"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="New Arrival"/>
+                    <RadioButton Content="Last 30 days" Margin="0,0,0,5"/>
+                    <RadioButton Content="Last 90 days"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Pay On Delivery"/>
+                    <CheckBox Content="Eligible for Pay On Delivery" Margin="0,5,0,0"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Kumar.in Specials"/>
+                    <CheckBox Content="Specials" IsEnabled="False" Margin="0,6,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Margin" Value="10,0,0,0"/>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="FontWeight" Value="Light"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Label Content="Kumazon.in" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Medium" 
+                           FontFamily="Comic Sans MS, Verdana"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="Search an Item" Margin="0,0,20,0" FontSize="15"/>
+                        <TextBox x:Name="txtbox_search" Width="250" BorderThickness="3" FontSize="15" FontWeight="Light" TextChanged="txtbox_search_TextChanged"/> 
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                        <Label FontSize="15" Content="Cost ranges from"/>
+                        <TextBox x:Name="txtcost_from" Margin="15,0,15,0" Width="80" BorderThickness="3" FontSize="15" FontWeight="Light"/>
+                        <Label FontSize="15" Content="to"/>
+                        <TextBox x:Name="txtcost_to" Margin="15,0,15,0" Width="80" BorderThickness="3" FontSize="15" FontWeight="Light"/>
+                        <Button x:Name="btn_cost" Content="Search" Width="80" Click="btn_cost_Click"/>
+                    </StackPanel>
+                    <ListView x:Name="lst_products" Height="460" Width="1000" Margin="0,10,0,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Product ID" Width="150" DisplayMemberBinding="{Binding PID}"/>
+                                <GridViewColumn Header="Product Name" Width="200" DisplayMemberBinding="{Binding PName}"/>
+                                <GridViewColumn Header="Product Price" Width="150" DisplayMemberBinding="{Binding PPrice}"/>
+                                <GridViewColumn Header="Product Ratings" Width="150" DisplayMemberBinding="{Binding PRatings}"/>
+                                <GridViewColumn Header="Product Pime" Width="150" DisplayMemberBinding="{Binding PPrime}"/>
+                                <GridViewColumn Header="Product Popularity" Width="150" DisplayMemberBinding="{Binding PPopularity}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                
+            </Border>
+        </Grid>
+    </Grid>
+
+</Window>
